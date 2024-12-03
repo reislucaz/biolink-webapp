@@ -11,10 +11,11 @@ export default function Navbar() {
   const pathname = usePathname(); // Captura a URL atual
   const [isCadastrosOpen, setIsCadastrosOpen] = useState(false); // Estado para controlar a abertura do submenu
 
+  // OBS: Gustavo, removi essa lógica pois não é mais necessária, pois a Navbar agora é renderizada apenas nas páginas de dashboard
   // Se a URL for a raiz "/", que é a página de login, não renderiza a Navbar
-  if (pathname === "/") {
-    return null;
-  }
+  // if (pathname === "/") {
+  //   return null;
+  // }
 
   const isActive = (currentPath: string, pathname: string) => {
     return currentPath.includes(pathname)

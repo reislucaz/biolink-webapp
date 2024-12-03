@@ -16,7 +16,7 @@ export default function RootLayout({
         <title>{metadata.title}</title>
       </head>
       <body className={`${InriaSans.className} font-sans flex`}>
-      <Navbar />
+        {children}
       </body>
     </html>
   );
