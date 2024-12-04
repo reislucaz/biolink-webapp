@@ -11,12 +11,6 @@ export default function Navbar() {
   const pathname = usePathname(); // Captura a URL atual
   const [isCadastrosOpen, setIsCadastrosOpen] = useState(false); // Estado para controlar a abertura do submenu
 
-  // OBS: Gustavo, removi essa lógica pois não é mais necessária, pois a Navbar agora é renderizada apenas nas páginas de dashboard
-  // Se a URL for a raiz "/", que é a página de login, não renderiza a Navbar
-  // if (pathname === "/") {
-  //   return null;
-  // }
-
   const isActive = (currentPath: string, pathname: string) => {
     return currentPath.includes(pathname)
       ? "text-red-700 bg-white rounded-md"
@@ -25,7 +19,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`w-[17%] h-screen fixed left-0 top-0 bg-red-700 text-white flex flex-col items-center py-6 ${InriaSans.className}`}
+      className={`w-[17%] h-screen fixed left-0 top-0 bg-background text-white flex flex-col items-center py-6 ${InriaSans.className}`}
     >
       <div className="mb-12">
         <Link href="/dashboard">
@@ -36,15 +30,15 @@ export default function Navbar() {
       <ul className="flex text-lg flex-col items-center space-y-6 ">
         {[
           { href: "/dashboard", label: "DASHBOARD" },
-          { href: "/doadores", label: "DOADORES" },
-          { href: "/receptores", label: "RECEPTORES" },
-          { href: "/gerenciamento", label: "GERENCIAMENTO" },
-          { href: "/alertas", label: "ALERTAS" },
+          { href: "/donor", label: "DOADORES" },
+          { href: "/receivers", label: "RECEPTORES" },
+          { href: "/management", label: "GERENCIAMENTO" },
+          { href: "/alerts", label: "ALERTAS" },
         ].map(({ href, label }) => (
           <li key={href} className="w-full">
             <Link
               href={href}
-              className={`flex items-center justify-center w-full py-2 px-10 transition-all duration-300 hover:text-red-700 hover:bg-white hover:rounded-md ${isActive(
+              className={`flex items-center justify-center w-full py-2 px-10 transition-all duration-300 hover:bg-secondary hover:text-primary hover:rounded-md ${isActive(
                 pathname,
                 href
               )}`}
