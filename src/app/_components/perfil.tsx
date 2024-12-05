@@ -49,7 +49,7 @@ export default function Perfil({ id }: { id: string }) {
   }, [id]);
 
   if (loading) {
-    <Spinner size="2" />;
+    return <Spinner size="2" />;
   }
 
   if (!person) {
@@ -73,39 +73,39 @@ function Section({ title, person }: { title: string; person: User }) {
         <h2 className="text-2xl font-bold text-primary">{title}</h2>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <InputField label="Name" value={person.name} />
-        <InputField label="Birth Date" value={person.birthDate} />
+        <InputField label="Nome" value={person.name} />
+        <InputField label="Data de Nascimento" value={person.birthDate} />
         <InputField label="CPF" value={person.cpf} />
         <InputField label="RG" value={person.rg} />
-        <InputField label="Nationality" value={person.nationality} />
-        <InputField label="Gender" value={person.gender} />
-        <InputField label="Address" value={person.address} />
-        <InputField label="Number" value={person.number} />
-        <InputField label="Neighborhood" value={person.neighborhood} />
-        <InputField label="City" value={person.city} />
-        <InputField label="State" value={person.state} />
-        <InputField label="Phone" value={person.phone} />
-        <InputField label="Blood Type" value={person.bloodType} />
-        <InputField label="RH Factor" value={person.rhFactor} />
-        <InputField label="Health Conditions" value={person.healthConditions} />
+        <InputField label="Nacionalidade" value={person.nationality} />
+        <InputField label="Sexo" value={person.gender} />
+        <InputField label="Endereço" value={person.address} />
+        <InputField label="Número" value={person.number} />
+        <InputField label="Bairro" value={person.neighborhood} />
+        <InputField label="Cidade" value={person.city} />
+        <InputField label="Estado" value={person.state} />
+        <InputField label="Telefone" value={person.phone} />
+        <InputField label="Tipo Sanguíneo" value={person.bloodType} />
+        <InputField label="Fator RH" value={person.rhFactor} />
+        <InputField label="Condições de Saúde" value={person.healthConditions} />
 
-        {person.role === "Recipient" && (
+        {person.role === "Recepitor" && (
           <>
-            <InputField label="Family History" value={person.familyHistory || "None"} />
+            <InputField label="Histórico Familiar" value={person.familyHistory || "Nenhum"} />
             <InputField
-              label="Transplant History"
-              value={person.transplantHistory || "None"}
+              label="Histórico de Transplantes"
+              value={person.transplantHistory || "Nenhum"}
             />
             <InputField
-              label="Waiting List Time"
-              value={person.waitingListTime || "Not informed"}
+              label="Tempo na Lista de Espera"
+              value={person.waitingListTime || "Não informado"}
             />
           </>
         )}
 
-        {person.role === "Donor" && (
+        {person.role === "Doador" && (
           <>
-            <InputField label="Allergies" value={person.allergies || "None"} />
+            <InputField label="Alergias" value={person.allergies || "Nenhuma"} />
           </>
         )}
       </div>
