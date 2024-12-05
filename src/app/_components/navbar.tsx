@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "@/app/_assets/logosm.svg";
 import { useState } from "react";
-import { InriaSans } from "@/app/_fonts/fonts"; // Importe a fonte personalizada
 
 export default function Navbar() {
   const pathname = usePathname(); // Captura a URL atual
@@ -13,26 +12,27 @@ export default function Navbar() {
 
   const isActive = (currentPath: string, pathname: string) => {
     return currentPath.includes(pathname)
-      ? "text-red-700 bg-white rounded-md"
+      ? "bg-secondary text-primary rounded-md"
       : "";
   };
 
   return (
     <nav
-      className={`w-[17%] h-screen fixed left-0 top-0 bg-background text-white flex flex-col items-center py-6 ${InriaSans.className}`}
+      className={`w-[17%] h-screen fixed left-0 top-0 bg-background text-card flex flex-col items-center py-6`}
     >
-      <div className="mb-12">
+      <div className="my-12">
         <Link href="/dashboard">
-          <Image src={logo} alt="Logo" width={80} height={80} />
+          <Image src={logo} alt="Logo" width={50} height={50} />
         </Link>
       </div>
 
-      <ul className="flex text-lg flex-col items-center space-y-6 ">
+      <ul className="flex font-bold flex-col items-center space-y-6 ">
         {[
           { href: "/dashboard", label: "DASHBOARD" },
           { href: "/donor", label: "DOADORES" },
           { href: "/receivers", label: "RECEPTORES" },
           { href: "/management", label: "GERENCIAMENTO" },
+          { href: "/hospitals", label: "HOSPITAIS" },
           { href: "/alerts", label: "ALERTAS" },
         ].map(({ href, label }) => (
           <li key={href} className="w-full">
