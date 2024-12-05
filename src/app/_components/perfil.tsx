@@ -1,59 +1,59 @@
 "use client";
 
 import * as React from "react";
+import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { User } from "lucide-react";
+import Spinner from "@/components/ui/spinner";
+
+interface User {
+  id: string;
+  role: string;
+  name: string;
+  birthDate: string;
+  cpf: string;
+  rg: string;
+  nationality: string;
+  gender: string;
+  address: string;
+  number: string;
+  neighborhood: string;
+  city: string;
+  state: string;
+  phone: string;
+  bloodType: string;
+  rhFactor: string;
+  healthConditions: string;
+  allergies?: string;
+  familyHistory?: string;
+  transplantHistory?: string;
+  waitingListTime?: string;
+}
 
 export default function Perfil({ id }: { id: string }) {
-  const data = [
-    {
-      id: "1",
-      role: "Donor",
-      name: "João Lucas dos Santos",
-      birthDate: "18/06/1976",
-      cpf: "123.456.789-00",
-      rg: "123456789",
-      nationality: "Brazilian",
-      gender: "Male",
-      address: "Av Fernando Goes, Quadra 20, Lote 54",
-      number: "456",
-      neighborhood: "Centro",
-      city: "Anápolis",
-      state: "GO",
-      phone: "(62) 98765-9876",
-      bloodType: "AB",
-      rhFactor: "POSITIVE",
-      healthConditions: "None",
-      allergies: "Amoxicillin",
-    },
-    {
-      id: "2",
-      role: "Recipient",
-      name: "Maria Barbosa Parreira",
-      birthDate: "22/09/1989",
-      cpf: "987654321-00",
-      rg: "987654321",
-      nationality: "Brazilian",
-      gender: "Female",
-      address: "Rua Brasil, Quadra 57, Lote 32",
-      number: "456",
-      neighborhood: "Asa Sul",
-      city: "Brasília",
-      state: "DF",
-      phone: "(61) 99765-5467",
-      bloodType: "O",
-      rhFactor: "POSITIVE",
-      healthConditions: "Chronic renal failure",
-      familyHistory: "Hypertension",
-      transplantHistory: "Left kidney, transplanted in 2020",
-      waitingListTime: "18 months",
-    },
-  ];
+  const [person, setPerson] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const person = data.find(person => person.id === id);
+  useEffect(() => {
+    fetch('/mock/user.json')
+      .then(response => response.json())
+      .then(data => {
+        const user = data.find((person: User) => person.id === id);
+        setPerson(user || null);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching user data:', error);
+        setLoading(false);
+      });
+  }, [id]);
+
+  if (loading) {
+    <Spinner size="2" />;
+  }
 
   if (!person) {
-    return <div>Profile not found</div>;
+    return <div>Perfil não encontrado</div>;
   }
 
   return (
@@ -63,7 +63,7 @@ export default function Perfil({ id }: { id: string }) {
   );
 }
 
-function Section({ title, person }: { title: string; person: Record<string, string | undefined> }) {
+function Section({ title, person }: { title: string; person: User }) {
   return (
     <div className="mb-8">
       <div className="flex items-center gap-4 mb-4">

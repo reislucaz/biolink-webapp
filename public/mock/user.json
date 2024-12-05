@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "role": "Donor",
+    "role": "Doador",
     "name": "João Lucas dos Santos",
     "birthDate": "18/06/1976",
     "cpf": "123.456.789-00",
@@ -21,7 +21,7 @@
   },
   {
     "id": "2",
-    "role": "Recipient",
+    "role": "Recepitor",
     "name": "Maria Barbosa Parreira",
     "birthDate": "22/09/1989",
     "cpf": "987654321-00",
@@ -43,7 +43,7 @@
   },
   {
     "id": "3",
-    "role": "Donor",
+    "role": "Doador",
     "name": "Carlos Eduardo Silva",
     "birthDate": "10/04/1985",
     "cpf": "321.654.987-00",
@@ -63,7 +63,7 @@
   },
   {
     "id": "4",
-    "role": "Recipient",
+    "role": "Recepitor",
     "name": "Fernanda Souza Lima",
     "birthDate": "30/11/1993",
     "cpf": "654321987-00",

@@ -16,7 +16,7 @@ const ITEMS_PER_PAGE = 5;
 interface User {
   id: string;
   role: string;
-  nome: string;
+  name: string;
 }
 
 interface Notification {
@@ -125,7 +125,7 @@ export default function Teste() {
               <Image width={120} height={145} src={logoB} alt="logo" className="size-80" />
               <div className="flex flex-col gap-4">
                 <h1 className="text-white text-4xl font-bold">Bem-vindo ao BioLink</h1>
-                <h2 className="text-white text-2xl">Olá, <a className="font-bold">{currentUser.nome}</a></h2>
+                <h2 className="text-white text-2xl">Olá, <a className="font-bold">{currentUser.name}</a></h2>
                 <h3 className="text-white text-xl">
                   {currentUser.role === "Receptora"
                     ? "Estamos aqui para te apoiar nessa jornada de esperança e renovação. Sabemos que o processo de espera por um transplante pode ser desafiador, mas você não está sozinho. Nosso sistema foi desenvolvido para garantir que você tenha todas as informações necessárias, de forma segura e acessível, durante cada etapa desse caminho."
