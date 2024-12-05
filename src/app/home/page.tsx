@@ -25,7 +25,7 @@ interface Notification {
   message: string;
 }
 
-export default function Teste() {
+export default function Home() {
   const searchParams = useSearchParams();
   const userId = searchParams.get("userId");
 
