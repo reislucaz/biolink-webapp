@@ -7,20 +7,20 @@ import { ReactNode } from "react";
 
 function BackwardsButton(){
   const { handleChangeStepBackwards } = useRegisterContext()
-  return <Button onClick={handleChangeStepBackwards} size='xl'>Anterior</Button>
+  return <Button onClick={handleChangeStepBackwards} size='xl'>Voltar</Button>
 }
 
 function FowardButton({ data }: {data?: Partial<IUserRegistrationDTO>}){
-  const { handleChangeStepFoward, setForm } = useRegisterContext()
+  const { handleChangeStepFoward, setForm, form } = useRegisterContext()
   return <Button onClick={()=>{
     handleChangeStepFoward()
     setForm({...data})
-    console.log(data)
+    console.log(form)
   }} size='xl'>Próximo</Button>
 }
 
 function Root({children}: {children: ReactNode}) {
-  return <div className="flex justify-between items-center">
+  return <div className="flex justify-between items-center w-full">
     {children}
   </div>
 }

@@ -7,15 +7,18 @@ import { RegisterStepThree } from "./step-3";
 import { RegisterStepFour } from "./step-4";
 import { RegisterStepFive } from "./step-5";
 import { FieldValues, UseFormReturn } from "react-hook-form";
+import { UserRegistrationSchemaType } from "@/validation/register-schema";
 
-export function RegisterSteps({form}:{form: UseFormReturn<FieldValues, any, undefined>}) {
+export interface StepsProps {form: UseFormReturn<FieldValues, UserRegistrationSchemaType, undefined>}
+
+export function RegisterSteps({form}: StepsProps) {
   const { step } = useRegisterContext()
 
   switch (step) {
     case 1:
       return <RegisterStepOne form={form} />
     case 2:
-      return <RegisterStepTwo />
+      return <RegisterStepTwo form={form} />
     case 3:
       return <RegisterStepThree />
     case 4:

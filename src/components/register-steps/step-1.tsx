@@ -2,13 +2,12 @@
 'use client'
 import { RadioGroup } from "@radix-ui/react-radio-group";
 import Image from "next/image";
-import { FieldValues, UseFormReturn } from 'react-hook-form';
 import Card from "../ui/card";
 import { FormControl, FormField } from "../ui/form";
 import { Label } from "../ui/label";
 import { RadioGroupItem } from "../ui/radio-group";
 import { ButtonsSection } from "./buttons-sections";
-import { UserRegistrationSchemaType } from "@/validation/register-schema";
+import { StepsProps } from ".";
 
 export enum UserTypeEnum {
   ADMIN = 'ADMIN',
@@ -16,8 +15,7 @@ export enum UserTypeEnum {
   DONATOR = 'DOADOR'
 }
 
-export function RegisterStepOne({ form }:{form: UseFormReturn<FieldValues, UserRegistrationSchemaType, undefined>}) {
-
+export function RegisterStepOne({form}: StepsProps) {
   return <Card> 
       <div className="flex flex-col justify-center items-center p-5 px-10 gap-10">
         <Image width={120} height={145} src="/logo.svg" alt="logo" className="size-20" />
