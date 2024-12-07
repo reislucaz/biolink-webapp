@@ -1,6 +1,5 @@
 import { metadata } from "./metadata";
 import { InriaSans } from "@/app/_fonts/fonts";
-import Navbar from "./_components/navbar";
 
 import "./globals.css";
 
