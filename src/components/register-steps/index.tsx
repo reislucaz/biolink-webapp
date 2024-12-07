@@ -20,7 +20,7 @@ export function RegisterSteps({form}: StepsProps) {
     case 2:
       return <RegisterStepTwo form={form} />
     case 3:
-      return <RegisterStepThree />
+      return <RegisterStepThree form={form} />
     case 4:
       return <RegisterStepFour />
     case 5:

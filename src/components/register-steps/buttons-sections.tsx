@@ -14,7 +14,9 @@ function FowardButton({ data }: {data?: Partial<IUserRegistrationDTO>}){
   const { handleChangeStepFoward, setForm, form } = useRegisterContext()
   return <Button onClick={()=>{
     handleChangeStepFoward()
-    setForm({...data})
+    setForm((prev)=> {
+      return {...prev, ...data}
+    })
     console.log(form)
   }} size='xl'>Próximo</Button>
 }
