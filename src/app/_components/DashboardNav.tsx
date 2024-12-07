@@ -1,41 +1,46 @@
-"use client"; // Marca o componente como cliente, pois estamos usando o hook usePathname
+"use client";
 
-import { usePathname } from "next/navigation"; // Importa o hook para capturar a URL atual
-import Link from "next/link";
-import Image from "next/image";
-import { useState } from "react";
+type NavItem = {
+  key: string;
+  label: string;
+};
 
-export default function DashboardNav() {
-  const pathname = usePathname(); // Captura a URL atual
-  const [isCadastrosOpen, setIsCadastrosOpen] = useState(false); // Estado para controlar a abertura do submenu
+type DashboardNavProps = {
+  onSelectTab: (tabKey: string) => void;
+  selectedTab: string;
+};
 
-  const isActive = (currentPath: string, pathname: string) => {
-    return currentPath.includes(pathname)
+export default function DashboardNav({
+  onSelectTab,
+  selectedTab,
+}: DashboardNavProps) {
+  const navItems: NavItem[] = [
+    { key: "doadorReceptor", label: "DOADOR/RECEPTOR" },
+    { key: "orgao", label: "ÓRGÃO" },
+    { key: "localidade", label: "LOCALIDADE" },
+  ];
+
+  const isActive = (itemKey: string) => {
+    return itemKey === selectedTab
       ? "text-secondary bg-primary rounded-md"
       : "";
   };
 
   return (
     <div className="w-full flex flex-col items-center">
-      <nav
-        className={`my-8 px-10 mx-10 font-bold border border-secondary-foreground text-secondary-foreground items-center rounded-md`}
-      >
+      <nav className="my-8 px-10 mx-10 font-bold border border-secondary-foreground text-secondary-foreground items-center rounded-md">
         <ul className="flex flex-row items-center my-1">
-          {[
-            { href: "/dashboard", label: "DOADOR/RECEPTOR" },
-            { href: "/organ", label: "ÓRGÃO" },
-            { href: "/location", label: "LOCALIDADE" },
-          ].map(({ href, label }) => (
-            <li key={href} className="mx-4">
-              <Link
-                href={href}
+          {navItems.map((item) => (
+            <li key={item.key} className="mx-4">
+              <button
+                type="button"
+                onClick={() => onSelectTab(item.key)}
                 className={`flex items-center justify-center py-2 px-8 transition-all duration-300 hover:bg-primary hover:text-secondary hover:rounded-md ${isActive(
-                  pathname,
-                  href
+                  item.key
                 )}`}
               >
-                {label}
-              </Link>
+                {item.label}
+              </button>
             </li>
           ))}
         </ul>

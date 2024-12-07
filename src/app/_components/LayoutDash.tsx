@@ -1,6 +1,6 @@
 import Navbar from "./navbar";
 
-export default function Layout({
+export default function LayoutDash({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (

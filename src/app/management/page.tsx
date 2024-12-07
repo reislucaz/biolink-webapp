@@ -1,4 +1,4 @@
-import Layout from "../_components/Layout";
+import Layout from "../_components/LayoutDash";
 
 export default function Dashboard() {
   return (
