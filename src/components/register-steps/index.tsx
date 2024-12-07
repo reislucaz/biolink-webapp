@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 import { useRegisterContext } from "@/app/contexts/registerContext";
 import { RegisterStepOne } from "./step-1";
@@ -5,13 +6,14 @@ import { RegisterStepTwo } from "./step-2";
 import { RegisterStepThree } from "./step-3";
 import { RegisterStepFour } from "./step-4";
 import { RegisterStepFive } from "./step-5";
+import { FieldValues, UseFormReturn } from "react-hook-form";
 
-export function RegisterSteps() {
+export function RegisterSteps({form}:{form: UseFormReturn<FieldValues, any, undefined>}) {
   const { step } = useRegisterContext()
 
   switch (step) {
     case 1:
-      return <RegisterStepOne />
+      return <RegisterStepOne form={form} />
     case 2:
       return <RegisterStepTwo />
     case 3:
@@ -21,6 +23,6 @@ export function RegisterSteps() {
     case 5:
       return <RegisterStepFive />
     default:
-      return <RegisterStepOne />
+      return <RegisterStepOne form={form} />
   }
 }

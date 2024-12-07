@@ -1,6 +1,6 @@
 'use client'
 
-import { useRegisterContext } from "@/app/contexts/registerContext";
+import { IUserRegistrationDTO, useRegisterContext } from "@/app/contexts/registerContext";
 import { Button } from "../ui/button";
 import { StepsIndicator } from "./steps-indicator";
 import { ReactNode } from "react";
@@ -10,9 +10,13 @@ function BackwardsButton(){
   return <Button onClick={handleChangeStepBackwards} size='xl'>Anterior</Button>
 }
 
-function FowardButton(){
-  const { handleChangeStepFoward } = useRegisterContext()
-  return <Button onClick={handleChangeStepFoward} size='xl'>Próximo</Button>
+function FowardButton({ data }: {data?: Partial<IUserRegistrationDTO>}){
+  const { handleChangeStepFoward, setForm } = useRegisterContext()
+  return <Button onClick={()=>{
+    handleChangeStepFoward()
+    setForm({...data})
+    console.log(data)
+  }} size='xl'>Próximo</Button>
 }
 
 function Root({children}: {children: ReactNode}) {
