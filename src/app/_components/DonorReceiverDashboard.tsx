@@ -4,8 +4,6 @@ import  BarChart from "./BarChart"
 import LegendDonorReceivers from "./LegendDonorReceivers";
 import PieChart from "./PieChart";
 
-import { useState } from "react";
-
 const donorReceiver = [
   { id: "Doador", value: 38, color: "hsl(0, 86%, 39%)"},
   { id: "Receptor", value: 62, color: "hsl(0, 0%, 37%)"},
