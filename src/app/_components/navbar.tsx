@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "@/app/_assets/logosm.svg";
 import { useState } from "react";
+import { LogOut } from "lucide-react";
+
 
 export default function Navbar() {
   const pathname = usePathname(); // Captura a URL atual
@@ -48,6 +50,9 @@ export default function Navbar() {
           </li>
         ))}
       </ul>
+      <div className="mt-auto w-full flex items-start justify-start pl-3">
+        <LogOut className="w-6 h-6" />
+      </div>
     </nav>
   );
 }
