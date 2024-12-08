@@ -1,0 +1,31 @@
+[
+  {
+    "id": "1",
+    "name": "Hospital Horizonte da Saúde",
+    "cnpj": "123.456.789/0001-85",
+    "address": "Av Fernando Goes, Quadra 20, Lote 54",
+    "number": "456",
+    "cep": "75089-965",
+    "neighborhood": "Centro",
+    "city": "Recife",
+    "state": "PE",
+    "phone": "(62) 98765-9876",
+    "email": "contato@hospitalsaolucas.com.br",
+    "status": true
+  },
+  {
+    "id": "2",
+    "name": "Hospital Nova Esperança",
+    "cnpj": "587.585.855/0001-47",
+    "address": "Av São Miguel",
+    "number": "758",
+    "cep": "75045-695",
+    "neighborhood": "Centro",
+    "city": "Curitiba",
+    "state": "PR",
+    "phone": "(62) 34300-5298",
+    "email": "contato@hospitalmariaaparecida.com.br",
+    "status": true
+  }
+  
+]
