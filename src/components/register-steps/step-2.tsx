@@ -34,7 +34,7 @@ export function RegisterStepTwo({form}: StepsProps) {
       <InputForm classname="col-span-6" label="Bairro" name="district" stepProps={{form}} placeholder="Insira seu bairro"/>
       <InputForm classname="col-span-4" label="Cidade" name="city" stepProps={{form}} placeholder="Insira sua cidade"/>
       <InputForm classname="col-span-4" label="Estado" name="state" stepProps={{form}} placeholder="Insira seu estado"/>
-      <InputForm classname="col-span-4" label="CPF" name="zip_code" stepProps={{form}} placeholder="Insira seu CEP"/>
+      <InputForm classname="col-span-4" label="CEP" name="zip_code" stepProps={{form}} placeholder="Insira seu CEP"/>
     </div>
     <ButtonsSection.Root>
       <ButtonsSection.BackwardsButton />

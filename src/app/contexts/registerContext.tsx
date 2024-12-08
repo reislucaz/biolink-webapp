@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from "react"
+import {useMutation} from 'react-query'
+import axios from 'axios'
 
 // DTO para informações básicas de cadastro de usuário
 export interface IUserRegistrationDTO {
@@ -46,16 +49,26 @@ interface RegisterContextProps {
   handleChangeStepBackwards: () => void
   form: Partial<IUserRegistrationDTO>
   setForm: Dispatch<SetStateAction<Partial<IUserRegistrationDTO>>>
+  handleUserRegistration: (body: Partial<IUserRegistrationDTO>)=> Promise<any>
+  isLoading: boolean
 }
 
 export const RegisterContext = createContext<RegisterContextProps>({} as RegisterContextProps)
 
+async function registerUser(body: Partial<IUserRegistrationDTO>){
+  const { data } = await axios.post('/register', body)
+  return data
+}
+
 export function RegisterProvider({ children }: { children: ReactNode }) {
   const [step, setStep] = useState(1)
   const [form, setForm] = useState<Partial<IUserRegistrationDTO>>({} as IUserRegistrationDTO)
+  const {mutateAsync, isLoading} = useMutation({
+    mutationFn: registerUser,
+  })
 
   function handleChangeStepFoward() {
-    const isLastStep = step === 5
+    const isLastStep = step === 4
     if(!isLastStep) setStep((prev) =>  prev + 1)
   }
 
@@ -64,7 +77,7 @@ export function RegisterProvider({ children }: { children: ReactNode }) {
     if(!isFirstStep) setStep((prev) =>  prev - 1)
   }
 
-  return <RegisterContext.Provider value={{ step, setStep, handleChangeStepBackwards, handleChangeStepFoward, form, setForm }}>
+  return <RegisterContext.Provider value={{ step, setStep, handleChangeStepBackwards, handleChangeStepFoward, form, setForm, handleUserRegistration: mutateAsync, isLoading }}>
     {children}
   </RegisterContext.Provider>
 }

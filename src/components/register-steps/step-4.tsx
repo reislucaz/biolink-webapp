@@ -1,16 +1,22 @@
-import Image from "next/image";
-import { ButtonsSection } from "./buttons-sections";
+import { StepsProps } from ".";
 import Card from "../ui/card";
+import { ButtonsSection } from "./buttons-sections";
+import { InputForm } from "./forms/input-form";
+import { RegisterHeader } from "./register-header";
 
-export function RegisterStepFour() {
+export function RegisterStepFour({form}:StepsProps) {
+  const type = form.watch('type')
   return <Card>
-    <div className="flex flex-col justify-center items-center p-5 px-10 gap-5">
-      <Image width={120} height={145} src="/logo.svg" alt="logo" className="size-20" />
-      <h3 className="text-background font-bold">Step 04</h3>
+    <div className="flex flex-col justify-center items-center p-5 px-10 gap-5 min-w-[48rem]">
+      <RegisterHeader title={`CADASTRO ${type}`} subtitle="AUTENTICAÇÃO"/>
+      <div className="w-full grid grid-cols-12 gap-2 items-center">
+      <InputForm classname="col-span-6" label="Senha" name="password" type="password" stepProps={{form}} placeholder="Insira sua senha"/>
+      <InputForm classname="col-span-6" label="Confirme sua senha" name="password_confirmation" stepProps={{form}} type="password" placeholder="Insira sua senha novamente"/>
+      </div>
       <ButtonsSection.Root>
         <ButtonsSection.BackwardsButton />
         <ButtonsSection.StepsIndicator />
-        <ButtonsSection.FowardButton />
+        <ButtonsSection.FinishButton />
       </ButtonsSection.Root>
     </div>
   </Card>

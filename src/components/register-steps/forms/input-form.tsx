@@ -8,9 +8,10 @@ interface InputFormProps {
   label: string
   placeholder?: string
   classname?: string
+  type?: string
 }
 
-export function InputForm({stepProps, label, name, placeholder, classname}:InputFormProps){
+export function InputForm({stepProps, label, name, placeholder, classname, type}:InputFormProps){
   return <FormField
   control={stepProps.form.control}
   name={name}
@@ -18,7 +19,7 @@ export function InputForm({stepProps, label, name, placeholder, classname}:Input
     <FormItem className={classname}>
       <FormLabel>{label}</FormLabel>
       <FormControl>
-        <Input defaultValue='' placeholder={placeholder} {...field} />
+        <Input type={type} defaultValue='' placeholder={placeholder} {...field} />
       </FormControl>
       <FormMessage />
     </FormItem>

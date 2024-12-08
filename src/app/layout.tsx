@@ -1,7 +1,8 @@
-import { metadata } from "./metadata";
+'use client'
 import { InriaSans } from "@/app/_fonts/fonts";
-import Navbar from "./_components/navbar";
+import { metadata } from "./metadata";
 
+import { QueryClient, QueryClientProvider } from "react-query";
 import "./globals.css";
 
 export default function RootLayout({
@@ -9,15 +10,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const queryClient = new QueryClient()
   return (
     <html lang="pt-br">
-      <head>
-        <meta name="description" content={metadata.description} />
-        <title>{metadata.title}</title>
-      </head>
-      <body className={`${InriaSans.className} font-sans flex`}>
-        {children}
-      </body>
+      <QueryClientProvider client={queryClient}>
+        <head>
+          <meta name="description" content={metadata.description} />
+          <title>{metadata.title}</title>
+        </head>
+        <body className={`${InriaSans.className} font-sans flex`}>
+          {children}
+        </body>
+      </QueryClientProvider>
     </html>
   );
 }

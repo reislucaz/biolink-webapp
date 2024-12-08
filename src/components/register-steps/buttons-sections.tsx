@@ -4,13 +4,14 @@ import { IUserRegistrationDTO, useRegisterContext } from "@/app/contexts/registe
 import { Button } from "../ui/button";
 import { StepsIndicator } from "./steps-indicator";
 import { ReactNode } from "react";
+import Spinner from "../ui/spinner";
 
 function BackwardsButton(){
   const { handleChangeStepBackwards } = useRegisterContext()
   return <Button onClick={handleChangeStepBackwards} size='xl'>Voltar</Button>
 }
 
-function FowardButton({ data }: {data?: Partial<IUserRegistrationDTO>}){
+function FowardButton({ data, title }: {data?: Partial<IUserRegistrationDTO>, title?: string}){
   const { handleChangeStepFoward, setForm, form } = useRegisterContext()
   return <Button onClick={()=>{
     handleChangeStepFoward()
@@ -18,7 +19,14 @@ function FowardButton({ data }: {data?: Partial<IUserRegistrationDTO>}){
       return {...prev, ...data}
     })
     console.log(form)
-  }} size='xl'>Próximo</Button>
+  }} size='xl'>{title ?? "Próximo"}</Button>
+}
+
+function FinishButton(){
+  const { handleUserRegistration, form, isLoading } = useRegisterContext()
+  return isLoading ? <Button size='xl'><Spinner /></Button> : <Button onClick={async ()=>{
+    await handleUserRegistration(form)
+  }} size='xl'>Finalizar</Button>
 }
 
 function Root({children}: {children: ReactNode}) {
@@ -31,5 +39,6 @@ export const ButtonsSection = {
   Root,
   BackwardsButton,
   FowardButton,
-  StepsIndicator
+  StepsIndicator,
+  FinishButton
 }

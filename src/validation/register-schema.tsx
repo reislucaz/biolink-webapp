@@ -41,10 +41,7 @@ export const UserRegistrationSchema = z.object({
   alcohol_consumer: z.boolean().optional(),
   smoker: z.boolean().optional(),
   family_history: z.string().optional(), 
-});
-
-// Validar a confirmação da senha
-export const UserRegistrationWithPasswordConfirmationSchema = UserRegistrationSchema.refine(
+}).refine(
   (data) => data.password === data.password_confirmation,
   {
     message: "A confirmação da senha não corresponde à senha.",

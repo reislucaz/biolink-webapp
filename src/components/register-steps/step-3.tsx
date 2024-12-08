@@ -174,7 +174,7 @@ export function RegisterStepThree({form}: StepsProps) {
           continuous_medication: form.watch('continuous_medication'),
           alcohol_consumer: form.watch('alcohol_consumer') === 'sim' ? true : false,
           smoker: form.watch('smoker') === 'sim' ? true : false,
-          organs_to_donate: form.watch('organs_to_donate').map((item: any)=>item.value)
+          organs_to_donate: form.watch('organs_to_donate')?.map((item: any)=>item.value) ?? []
         }} />
       </ButtonsSection.Root>
     </div>
