@@ -4,14 +4,18 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import Spinner from "@/components/ui/spinner";
-import axios from "axios";
+import { bioLinkApi } from "@/lib/axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useMutation } from "react-query";
 
 async function signIn(body: any){
-  return await axios.post('/login', body)
+  return await bioLinkApi.post('/login', body, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
 }
 
 export default function Login() {
@@ -43,7 +47,7 @@ export default function Login() {
         <Link href={"/"} className="text-xs hover:text-background">Esqueceu a senha?</Link>
       </div>
     </div>
-    <Button onClick={async ()=> await mutateAsync()} size='xl'>{isLoading ? <Spinner /> : "Entrar"}</Button>
+    <Button onClick={async () => await mutateAsync()} size='xl'>{isLoading ? <Spinner /> : "Entrar"}</Button>
     <p className="text-sm">Não tem uma conta? <Link href="/register" className="text-background font-bold">Cadastre-se</Link></p>
   </div>
 }

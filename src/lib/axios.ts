@@ -1,4 +1,4 @@
-import axios from 'axios'
+import { Axios } from 'axios'
 
 export interface ApiResponseError {
   statusCode: number
@@ -6,6 +6,6 @@ export interface ApiResponseError {
   errors: string[]
 }
 
-export const coletApi = axios({
-  baseURL: "https://biolink-api.reislucaz.dev/"
+export const bioLinkApi = new Axios({
+  baseURL: "https://biolink-api.reislucaz.dev"
 })
