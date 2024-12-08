@@ -40,7 +40,7 @@ export const UserRegistrationSchema = z.object({
   continuous_medication: z.string().optional(),
   alcohol_consumer: z.boolean().optional(),
   smoker: z.boolean().optional(),
-  family_history: z.string().optional(),
+  family_history: z.string().optional(), 
 });
 
 // Validar a confirmação da senha
