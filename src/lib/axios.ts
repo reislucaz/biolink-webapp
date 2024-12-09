@@ -1,4 +1,4 @@
-import { Axios } from 'axios'
+import axios from 'axios'
 
 export interface ApiResponseError {
   statusCode: number
@@ -6,6 +6,10 @@ export interface ApiResponseError {
   errors: string[]
 }
 
-export const bioLinkApi = new Axios({
-  baseURL: "https://biolink-api.reislucaz.dev"
+export const bioLinkApi = axios.create({
+  baseURL: "http://localhost:8000/api",
+  headers: {
+    'Accept': 'application/json',
+  },
+  withCredentials: true,
 })

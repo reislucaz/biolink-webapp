@@ -24,7 +24,8 @@ function FowardButton({ data, title }: {data?: Partial<IUserRegistrationDTO>, ti
 
 function FinishButton(){
   const { handleUserRegistration, form, isLoading } = useRegisterContext()
-  return isLoading ? <Button size='xl'><Spinner /></Button> : <Button onClick={async ()=>{
+  return isLoading ? <Button disabled size='xl'><Spinner /></Button> : <Button onClick={async ()=>{
+    console.log(form)
     await handleUserRegistration(form)
   }} size='xl'>Finalizar</Button>
 }

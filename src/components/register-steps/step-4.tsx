@@ -1,11 +1,23 @@
+import { useEffect } from "react";
 import { StepsProps } from ".";
 import Card from "../ui/card";
 import { ButtonsSection } from "./buttons-sections";
 import { InputForm } from "./forms/input-form";
 import { RegisterHeader } from "./register-header";
+import { useRegisterContext } from "@/app/contexts/registerContext";
 
 export function RegisterStepFour({form}:StepsProps) {
   const type = form.watch('type')
+  const password = form.watch('password')
+  const confirmPassword = form.watch('password_confirmation')
+  const {setForm} = useRegisterContext()
+
+  useEffect(()=>{
+    setForm((prev)=>{
+      return {...prev, password, password_confirmation: confirmPassword}
+    })
+  },[password, setForm, confirmPassword])
+
   return <Card>
     <div className="flex flex-col justify-center items-center p-5 px-10 gap-5 min-w-[48rem]">
       <RegisterHeader title={`CADASTRO ${type}`} subtitle="AUTENTICAÇÃO"/>

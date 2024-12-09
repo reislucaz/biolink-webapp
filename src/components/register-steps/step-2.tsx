@@ -11,11 +11,11 @@ export function RegisterStepTwo({form}: StepsProps) {
   const items = [
     {
       label: 'Masculino',
-      value: 'MAS'
+      value: 'MASC'
     },
     {
       label: 'Feminino',
-      value: 'FEN'
+      value: 'FEM'
     }
   ]
   return <Card> 
@@ -42,7 +42,9 @@ export function RegisterStepTwo({form}: StepsProps) {
       <ButtonsSection.FowardButton data={{
         name: form.watch('name'),
         nationality: form.watch('nationality'),
-        birth_date: form.watch('birth_date'),
+        birth_date: form.watch('birth_date') 
+        ? new Date(form.watch('birth_date')).toISOString().slice(0, 19).replace('T', ' ') 
+        : '',
         gender: form.watch('gender'),
         cpf: form.watch('cpf'),
         rg: form.watch('rg'),

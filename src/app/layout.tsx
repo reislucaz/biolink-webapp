@@ -20,7 +20,11 @@ export default function RootLayout({
         onError: async (error: any) => toast({
           variant: 'destructive',
           title: error.message
-        })
+        }),
+        onSuccess: async () => toast({
+          variant: 'default',
+          title: "Deu certo"
+        }),
       }
     }
   })

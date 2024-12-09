@@ -11,18 +11,20 @@ import { useState } from "react";
 import { useMutation } from "react-query";
 
 async function signIn(body: any){
-  return await bioLinkApi.post('/login', body, {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
+  try {
+    return await bioLinkApi.post('/login', body, {headers: {
+      'Content-Type': 'application/json',
+    },})
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 export default function Login() {
   const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
   const {mutateAsync, isLoading} = useMutation({
-    mutationFn: async () => await signIn({login, password})
+    mutationFn: async () => await signIn({email: login, password})
   })
 
   return <div className="py-10 px-10 gap-5 min-w-96 min-h-96 flex justify-center items-center flex-col bg-secondary rounded-lg">

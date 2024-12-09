@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
-import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from "react"
-import {useMutation} from 'react-query'
-import axios from 'axios'
 import { bioLinkApi } from "@/lib/axios";
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from "react";
+import { useMutation } from 'react-query';
 
 // DTO para informações básicas de cadastro de usuário
 export interface IUserRegistrationDTO {
@@ -57,8 +56,7 @@ interface RegisterContextProps {
 export const RegisterContext = createContext<RegisterContextProps>({} as RegisterContextProps)
 
 async function registerUser(body: Partial<IUserRegistrationDTO>){
-  const { data } = await bioLinkApi.post('/register', body)
-  return data
+  return await bioLinkApi.post('/register', body)
 }
 
 export function RegisterProvider({ children }: { children: ReactNode }) {
