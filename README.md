@@ -17,6 +17,12 @@ Para instalar as dependências do projeto, execute o comando:
 npm install
 ```
 
+Caso tenha algum problema rodando o comando acima, adicione a flag --legacy-peer-deps:
+
+```bash
+npm install --legacy-peer-deps
+```
+
 ## 🚦 Execução
 
 Para executar o projeto, execute o comando:
