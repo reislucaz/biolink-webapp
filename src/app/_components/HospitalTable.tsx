@@ -2,10 +2,9 @@
 
 import { IconButton } from "@/components/ui/icon-button";
 import Spinner from "@/components/ui/spinner";
-import { Eye, Hospital, Pen, Trash } from "lucide-react";
+import { Eye, Hospital, Pen, Plus, Trash } from "lucide-react";
 import { useEffect, useState } from "react";
 import HospitalForm from "./HospitalForm";
-
 
 interface Hospital {
     id: string;
@@ -21,7 +20,6 @@ interface Hospital {
     email: string;
     status: string
 }
-
 
 export default function HospitalTable() {
     const [content, setContent] = useState<string>();
@@ -51,54 +49,73 @@ export default function HospitalTable() {
     }
 
     return (
-
         <div className="w-full flex flex-col items-center">
-            <h1>HOSPITAL</h1>
+            <div className="flex items-center gap-4 mb-4">
+                <h2 className="text-2xl font-bold">Hospital</h2>
+                <IconButton
+                    icon={<Plus width={16} height={16} />}
+                    color="gray"
+                    onClick={() => {
+                        setContent('add');
+                    }}
+                    className={`mr-1 text-right`}
+                />
+            </div>
 
-            <table cellPadding={10} cellSpacing={0} style={{ width: "100%" }}>
-                <thead>
+            <table className="w-full border-separate border-spacing-y-1">
+                <thead className="text-left">
                     <tr>
-                        <th>Nome</th>
-                        <th>Localização</th>
-                        <th>Status</th>
-                        <th></th>
+                        <th className="px-4 py-2 bg-secondary sticky top-0 z-10 shadow-sm">Nome</th>
+                        <th className="px-4 py-2 bg-secondary sticky top-0 z-10 shadow-sm">Localização</th>
+                        <th className="px-4 py-2 bg-secondary sticky top-0 z-10 shadow-sm">Status</th>
+                        <th className="px-4 py-2 bg-secondary sticky top-0 z-10 shadow-sm"></th>
                     </tr>
                 </thead>
                 <tbody>
                     {hospitals.map((hospital: Hospital) => (
-                        <tr key={hospital.id}>
-                            <td>{hospital.name}</td>
-                            <td>{hospital.city}-{hospital.state}</td>
-                            <td>{hospital.status ? 'ATIVO' : 'INATIVO'}</td>
-                            <td>
+                        <tr
+                            className="rounded-md overflow-hidden shadow-sm bg-primary-foreground border"
+                            key={hospital.id}>
+                            <td className={`px-4 py-1 border-foreground border-y border-l rounded-l-md`}>{hospital.name}</td>
+                            <td className={`px-4 py-1 border-foreground border-y`}>{hospital.city}-{hospital.state}</td>
+                            <td className={`px-4 py-1 border-foreground border-y`}>{hospital.status ? 'ATIVO' : 'INATIVO'}</td>
+                            <td className={`px-4 py-1 border-foreground border-y border-r rounded-r-md text-right`}>
                                 <IconButton
-                                    icon={<Eye width={18} height={18} />}
+                                    icon={<Eye width={16} height={16} />}
                                     color="gray"
-                                    variant="outline"
+                                    className={`mr-1`}
                                     onClick={() => {
                                         setContent('view');
                                         setHospitalSelecionado(hospital)
                                     }} />
 
                                 <IconButton
-                                    icon={<Pen width={18} height={18} />}
+                                    icon={<Pen width={16} height={16} />}
                                     color="gray"
-                                    variant="outline"
+                                    className={`mr-1`}
                                     onClick={() => {
                                         setContent('edit');
                                         setHospitalSelecionado(hospital)
                                     }} />
 
                                 <IconButton
-                                    icon={<Trash width={18} height={18} />}
+                                    icon={<Trash width={16} height={16} />}
                                     color="gray"
-                                    variant="outline" />
-
+                                    className={`mr-1`}
+                                />
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+
+            <div className={`transition-opacity duration-500 ease-in-out ${content === 'add' ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+                {content === 'add' && hospitalSelecionando != undefined && (
+                    <div className="flex justify-center py-10 px-10 items-center flex-row gap-4 mt-6 bg-white rounded-lg">
+                        <HospitalForm hospital={null} title="Cadastrar Hospital" />
+                    </div>
+                )}
+            </div>
 
             <div className={`transition-opacity duration-500 ease-in-out ${content === 'view' ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                 {content === 'view' && hospitalSelecionando != undefined && (
@@ -119,4 +136,3 @@ export default function HospitalTable() {
     );
 
 }
-
