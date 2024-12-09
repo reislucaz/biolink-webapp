@@ -7,6 +7,7 @@ import Spinner from "@/components/ui/spinner";
 import { bioLinkApi } from "@/lib/axios";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useMutation } from "react-query";
 
@@ -26,6 +27,7 @@ export default function Login() {
   const {mutateAsync, isLoading} = useMutation({
     mutationFn: async () => await signIn({email: login, password})
   })
+  const {push} = useRouter()
 
   return <div className="py-10 px-10 gap-5 min-w-96 min-h-96 flex justify-center items-center flex-col bg-secondary rounded-lg">
     <Image width={120} height={145} src="/logo.svg" alt="logo" className="size-20" />
@@ -49,7 +51,10 @@ export default function Login() {
         <Link href={"/"} className="text-xs hover:text-background">Esqueceu a senha?</Link>
       </div>
     </div>
-    <Button onClick={async () => await mutateAsync()} size='xl'>{isLoading ? <Spinner /> : "Entrar"}</Button>
+    <Button onClick={async () => {
+      await mutateAsync()
+      push('/')
+    }} size='xl'>{isLoading ? <Spinner /> : "Entrar"}</Button>
     <p className="text-sm">Não tem uma conta? <Link href="/register" className="text-background font-bold">Cadastre-se</Link></p>
   </div>
 }
