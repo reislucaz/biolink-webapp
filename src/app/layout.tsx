@@ -26,13 +26,13 @@ export default function RootLayout({
   })
   return (
     <html lang="pt-br">
-      <Toaster />
       <QueryClientProvider client={queryClient}>
         <head>
           <meta name="description" content={metadata.description} />
           <title>{metadata.title}</title>
         </head>
         <body className={`${InriaSans.className} font-sans flex`}>
+        <Toaster />
           {children}
         </body>
       </QueryClientProvider>
