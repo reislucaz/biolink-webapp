@@ -21,10 +21,6 @@ export default function RootLayout({
           variant: 'destructive',
           title: error.message
         }),
-        onSuccess: async () => toast({
-          variant: 'default',
-          title: "Deu certo"
-        }),
       }
     }
   })

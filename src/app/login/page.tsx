@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import Spinner from "@/components/ui/spinner";
+import { toast } from "@/hooks/use-toast";
 import { bioLinkApi } from "@/lib/axios";
 import Image from "next/image";
 import Link from "next/link";
@@ -28,7 +29,11 @@ export default function Login() {
   const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
   const {mutateAsync, isLoading} = useMutation({
-    mutationFn: async () => await signIn({email: login, password})
+    mutationFn: async () => await signIn({email: login, password}),
+    onSuccess: async () => toast({
+      variant: 'default',
+      title: "Autenticação realizada com sucesso"
+    }),
   })
   const {push} = useRouter()
 
@@ -56,7 +61,7 @@ export default function Login() {
     </div>
     <Button onClick={async () => {
       await mutateAsync()
-      push('/dashboard')
+      push('/')
     }} size='xl'>{isLoading ? <Spinner /> : "Entrar"}</Button>
     <p className="text-sm">Não tem uma conta? <Link href="/register" className="text-background font-bold">Cadastre-se</Link></p>
   </div>

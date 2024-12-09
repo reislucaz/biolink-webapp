@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
+import { toast } from "@/hooks/use-toast";
 import { bioLinkApi } from "@/lib/axios";
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from "react";
 import { useMutation } from 'react-query';
@@ -64,6 +65,10 @@ export function RegisterProvider({ children }: { children: ReactNode }) {
   const [form, setForm] = useState<Partial<IUserRegistrationDTO>>({} as IUserRegistrationDTO)
   const {mutateAsync, isLoading} = useMutation({
     mutationFn: registerUser,
+    onSuccess: async () => toast({
+      variant: 'default',
+      title: "Cadastro realizado com sucesso"
+    }),
   })
 
   function handleChangeStepFoward() {
