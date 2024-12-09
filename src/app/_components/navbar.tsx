@@ -1,15 +1,19 @@
 "use client"; // Marca o componente como cliente, pois estamos usando o hook usePathname
 
-import { usePathname } from "next/navigation"; // Importa o hook para capturar a URL atual
+import { usePathname, useRouter } from "next/navigation"; // Importa o hook para capturar a URL atual
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/app/_assets/logosm.svg";
 import { useState } from "react";
+import { LogOut } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
 
 export default function Navbar() {
   const pathname = usePathname(); // Captura a URL atual
   const [isCadastrosOpen, setIsCadastrosOpen] = useState(false); // Estado para controlar a abertura do submenu
-
+  const {push} = useRouter()
+  
   const isActive = (currentPath: string, pathname: string) => {
     return currentPath.includes(pathname)
       ? "bg-secondary text-primary rounded-md"
@@ -48,6 +52,12 @@ export default function Navbar() {
           </li>
         ))}
       </ul>
+      <Button onClick={()=>{
+        localStorage.removeItem('token')
+        push('/')
+      }} variant='ghost' className="mt-auto w-full ml-5 flex items-start justify-start">
+        <LogOut className="size-16" />
+      </Button>
     </nav>
   );
 }
