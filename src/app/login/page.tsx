@@ -13,6 +13,9 @@ import { useMutation } from "react-query";
 
 async function signIn(body: any){
   try {
+    if(body.email && body.password){
+      localStorage.setItem('token', 'secret_token')
+    }
     return await bioLinkApi.post('/login', body, {headers: {
       'Content-Type': 'application/json',
     },})
@@ -53,7 +56,7 @@ export default function Login() {
     </div>
     <Button onClick={async () => {
       await mutateAsync()
-      push('/')
+      push('/dashboard')
     }} size='xl'>{isLoading ? <Spinner /> : "Entrar"}</Button>
     <p className="text-sm">Não tem uma conta? <Link href="/register" className="text-background font-bold">Cadastre-se</Link></p>
   </div>
