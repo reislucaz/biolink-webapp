@@ -6,7 +6,6 @@ import { Eye, Hospital, Pen, Plus, Trash } from "lucide-react";
 import { useEffect, useState } from "react";
 import HospitalForm from "./HospitalForm";
 
-
 interface Hospital {
     id: string;
     name: string;
@@ -21,7 +20,6 @@ interface Hospital {
     email: string;
     status: string
 }
-
 
 export default function HospitalTable() {
     const [content, setContent] = useState<string>();
@@ -52,8 +50,6 @@ export default function HospitalTable() {
 
     return (
         <div className="w-full flex flex-col items-center">
-
-
             <div className="flex items-center gap-4 mb-4">
                 <h2 className="text-2xl font-bold">Hospital</h2>
                 <IconButton
@@ -107,7 +103,6 @@ export default function HospitalTable() {
                                     color="gray"
                                     className={`mr-1`}
                                 />
-
                             </td>
                         </tr>
                     ))}
@@ -141,4 +136,3 @@ export default function HospitalTable() {
     );
 
 }
-

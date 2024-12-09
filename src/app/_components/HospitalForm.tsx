@@ -25,11 +25,13 @@ export default function HospitalForm({ hospital, title }: { hospital: Hospital |
                     <Hospital className="w-8 h-8" />
                 </div>
                 <h2 className="text-2xl font-bold text-primary">{title}</h2>
+
                 <IconButton
                     icon={<Minus width={16} height={16} />}
                     color="gray"
                     className={`mr-1`}
                 />
+
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <InputField label="HOSPITAL" value={hospital?.name} />
