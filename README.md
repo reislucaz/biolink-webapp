@@ -30,3 +30,14 @@ Para executar o projeto, execute o comando:
 ```bash
 npm run dev
 ```
+
+## Integrantes
+
+- Lucas Reis
+- Millena
+- Lídia
+- Jennifer
+- Letícia Reis
+- Diego Mesquita
+- Gustavo Antunes
+- Gustavo Bertonsin
